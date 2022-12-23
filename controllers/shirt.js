@@ -1,28 +1,64 @@
-// GET '/shirt'
-const getAllShirt = (req, res, next) => {
-    res.json({message: "GET all shirts"}); // test function, not definitive
-}
+const CompanyShirt = require('../models/company-shirt');
+const CommunityShirt = require('../models/community-shirt');
 
-//POST '/shirt'
-const newShirt = (req, res, next) => {
-    res.json({message: "POST new shirt"});
+// GET '/getCompanyShirts'
+const getCompanyShirts = (req, res) => {
+    CompanyShirt.find({}, (err, data) => {
+        if (err) {
+            return res.json({Error: err});
+        }
+        return res.json(data);
+    })
 };
 
-//GET '/shirt/:name'
-const getShirt = (req, res, next) => {
-    res.json({message: "GET 1 shirt"});
+//GET '/getCompanyShirt/:name'
+const getCompanyShirt = (req, res) => {
+    let name = req.params.name;
+
+    CompanyShirt.findOne({name: name}, (err, data) => {
+        if (err || !data) {
+            return res.json({message: "Impossible to find shirt"});
+        } else {
+            return res.json(data);
+        }
+    })
 };
 
-//DELETE '/shirt/:name'
-const deleteShirt = (req, res, next) => {
-    res.json({message: "DELETE 1 shirt"});
+// GET '/getCommunityShirts'
+const getCommunityShirts = (req, res) => {
+    CommunityShirt.find({}, (err, data) => {
+        if (err) {
+            return res.json({Error: err});
+        }
+        return res.json(data);
+    })
 };
+
+//GET '/getCommunityShirt/:name'
+const getCommunityShirt = (req, res) => {
+    let name = req.params.name;
+
+    CommunityShirt.findOne({name: name}, (err, data) => {
+        if (err || !data) {
+            return res.json({message: "Impossible to find shirt"});
+        } else {
+            return res.json(data);
+        }
+    })
+};
+
+//GET '/getWeeklyShirt'
+const getWeeklyShirt = (req, res) => {
+    res.json({message: "GET weekly shirt"});
+};
+
 
 //export controller functions
 module.exports = {
-    getAllShirt,
-    newShirt,
-    getShirt,
-    deleteShirt
+    getCompanyShirts,
+    getCompanyShirt,
+    getCommunityShirts,
+    getCommunityShirt,
+    getWeeklyShirt
 };
 

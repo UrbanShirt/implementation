@@ -2,12 +2,13 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 
-const routes = require('./routes/shirt'); // import the routes
+// import the routes
+const routes = require('./routes/shirt');
 
 const mongoose = require('mongoose');
-app.use('/', routes);
 
-app.use('/', routes); //to use the routes
+//to use the routes
+app.use('/', routes);
 
 
 mongoose.connect(
