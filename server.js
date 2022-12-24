@@ -3,12 +3,12 @@ const express = require('express');
 const app = express();
 
 // import the routes
-const routes = require('./routes/shirt');
+const shirtRoutes = require('./routes/shirt');
 
 const mongoose = require('mongoose');
 
 //to use the routes
-app.use('/', routes);
+app.use('/', shirtRoutes);
 
 
 mongoose.connect(
