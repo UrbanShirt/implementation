@@ -5,10 +5,10 @@ const router = express.Router();
 const shirtController = require('../controllers/shirt');
 
 router.get('/getCompanyShirts', shirtController.getCompanyShirts);
-router.get('/getCompanyShirt/:filterName', shirtController.getCompanyShirt);
+router.get('/getFilteredCompanyShirts/:filterName', shirtController.getFilteredCompanyShirts);
 
 router.get('/getCommunityShirts', shirtController.getCommunityShirts);
-router.get('/getCommunityShirt/:filterName', shirtController.getCommunityShirt);
+router.get('/getFilteredCommunityShirts/:filterName', shirtController.getFilteredCommunityShirts);
 router.post('/likeCommunityShirt', shirtController.likeCommunityShirt);
 
 router.get('/getWeeklyShirt', shirtController.getWeeklyShirt);

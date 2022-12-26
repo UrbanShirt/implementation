@@ -4,11 +4,14 @@ const app = express();
 
 // import the routes
 const shirtRoutes = require('./routes/shirt');
+const userRoutes = require('./routes/user');
 
 const mongoose = require('mongoose');
+app.use(express.json());
 
 //to use the routes
 app.use('/', shirtRoutes);
+app.use('/', userRoutes);
 
 
 mongoose.connect(
@@ -30,6 +33,8 @@ const companyShirtModel = require('./models/company-shirt');
 
 companyShirtModel.insertMany(
     [
+        {name: 'homepage-community-shirt', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/develop/images/homepage-community-shirt.png?raw=true'},
+        {name: 'homepage-company-shirt', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/develop/images/homepage-company-shirt.png?raw=true'},
         {name: 'maglietta nera c-style', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/develop/images/black-blank-shirt-company.png?raw=true', color: 'black', material: 'polyester'},
         {name: 'maglietta bianca c-style', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/develop/images/white-blank-shirt-company.png?raw=true', color: 'white', material: 'rayon'},
         {name: 'maglietta blu c-style', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/develop/images/blue-blank-shirt-company.png?raw=true', color: 'blue', material: 'polyester'},
@@ -54,4 +59,9 @@ communityShirtModel.insertMany(
     function (err) {
         console.log("array of shirts added");
     });
+*/
+/*
+const communityShirtModel = require('./models/community-shirt');
+
+communityShirtModel.deleteMany({name: {$regex: '.*', $options: 'i'}}, function(err) {console.log("shirts deleted");});
 */

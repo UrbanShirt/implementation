@@ -1,25 +1,26 @@
 const CompanyShirt = require('../models/company-shirt');
 const CommunityShirt = require('../models/community-shirt');
 
+
 // GET '/getCompanyShirts'
 const getCompanyShirts = (req, res) => {
     CompanyShirt.find({}, (err, data) => {
         if (err) {
-            return res.json({Error: err});
+            return res.status(404).json({error: "Impossible to find shirts"});
         }
         return res.json(data);
     })
 };
 
-// GET '/getCompanyShirt/:name'
-const getCompanyShirt = (req, res) => {
+// GET '/getFilteredCompanyShirts/:name'
+const getFilteredCompanyShirts = (req, res) => {
     let filterName = req.params.filterName;
 
     console.log(filterName);
 
     CompanyShirt.find({name: {$regex: '.*'+filterName+'.*', $options: 'i'}}, (err, data) => {
         if (err || !data) {
-            return res.json({message: "Impossible to find shirts"});
+            return res.status(404).json({error: "Impossible to find shirts"});
         } else {
             return res.json(data);
         }
@@ -30,14 +31,14 @@ const getCompanyShirt = (req, res) => {
 const getCommunityShirts = (req, res) => {
     CommunityShirt.find({}, (err, data) => {
         if (err) {
-            return res.json({Error: err});
+            return res.status(404).json({error: "Impossible to find shirts"});
         }
         return res.json(data);
     })
 };
 
-// GET '/getCommunityShirt/:name'
-const getCommunityShirt = (req, res) => {
+// GET '/getFilteredCommunityShirts/:name'
+const getFilteredCommunityShirts = (req, res) => {
     let filterName = req.params.filterName;
 
     CommunityShirt.find({$or:[
@@ -45,7 +46,8 @@ const getCommunityShirt = (req, res) => {
         {creator: {$regex: '.*'+filterName+'.*', $options: 'i'}}
         ]}, (err, data) => {
             if (err || !data) {
-                return res.json({message: "Impossible to find shirts"});
+                // considerare res.status(400)
+                return res.status(404).json({error: "Impossible to find shirts"});
             } else {
                 return res.json(data);
             }
@@ -54,22 +56,31 @@ const getCommunityShirt = (req, res) => {
 
 // POST '/likeCommunityShirt'
 const likeCommunityShirt = (req, res) => {
-    let likedShirt = req.params.filterName;
+    var likedShirt = req.body.name;
+    var user = req.body.username;
 
-    CommunityShirt.updateOne({name: likedShirt}, {$inc: {likes: 1}}, (err, data) => {
+    CommunityShirt.findOne({name: likedShirt}, (err, data) => {
         if (err || !data) {
-            return res.json({message: "Impossible to find Like Shirt"});
+            return res.status(404).json({error: "Impossible to find shirt to like"});
+        } else if (data.voters.includes(user)) {
+            return res.json({message: "You already liked this shirt"});
         } else {
-            console.log(data);
+            CommunityShirt.updateOne({name: likedShirt}, {$inc: {likes: 1}, $push: {voters: user}}, (err, data) => {
+                if (err || !data) {
+                    return res.status(400).json({error: "Impossible to like shirt: an error occurred"});
+                } else {
+                    return res.json({message: "Like added"});
+                }
+            });
         }
-    })
+    });
 };
 
 // GET '/getWeeklyShirt'
 const getWeeklyShirt = (req, res) => {
-    CommunityShirt.findOne({isMostlyLiked: true}, (err, data) => {
+    CommunityShirt.findOne({isMostlyLiked: true}, async (err, data) => {
         if (err || !data) {
-            return res.json({message: "Impossible to find Weekly Shirt"});
+            return res.status(404).json({error: "Impossible to find Weekly Shirt"});
         } else {
             return res.json(data);
         }
@@ -78,9 +89,9 @@ const getWeeklyShirt = (req, res) => {
 
 // GET '/getHomepageCompanyShirt'
 const getHomepageCompanyShirt = (req, res) => {
-    CommunityShirt.findOne({name: 'homepage-company-shirt'}, (err, data) => {
+    CompanyShirt.findOne({name: 'homepage-company-shirt'}, (err, data) => {
         if (err || !data) {
-            return res.json({message: "Impossible to find homepage company Shirt"});
+            return res.status(404).json({error: "Impossible to find homepage company Shirt"});
         } else {
             return res.json(data.image);
         }
@@ -89,9 +100,9 @@ const getHomepageCompanyShirt = (req, res) => {
 
 // GET '/getHomepageCommunityShirt'
 const getHomepageCommunityShirt = (req, res) => {
-    CommunityShirt.findOne({name: 'homepage-community-shirt'}, (err, data) => {
+    CompanyShirt.findOne({name: 'homepage-community-shirt'}, (err, data) => {
         if (err || !data) {
-            return res.json({message: "Impossible to find homepage community Shirt"});
+            return res.status(404).json({error: "Impossible to find homepage community Shirt"});
         } else {
             return res.json(data.image);
         }
@@ -99,14 +110,15 @@ const getHomepageCommunityShirt = (req, res) => {
 };
 
 
+
 module.exports = {
     getCompanyShirts,
-    getCompanyShirt,
+    getFilteredCompanyShirts,
     getCommunityShirts,
-    getCommunityShirt,
+    getFilteredCommunityShirts,
+    likeCommunityShirt,
     getWeeklyShirt,
     getHomepageCompanyShirt,
-    getHomepageCommunityShirt,
-    likeCommunityShirt // non testata + aggiungere le due magliette per la homepage
+    getHomepageCommunityShirt
 };
 
