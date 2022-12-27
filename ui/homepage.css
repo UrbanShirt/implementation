@@ -4,7 +4,11 @@
 
 #orizzontale {
     background-color: transparent;
+    top: 350px;
+    position: absolute;
     margin: 0 auto;
+    width: max-content;
+    align-items: center;
 }
 
 
@@ -30,7 +34,7 @@
     font-family: 'Urbanist';
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 48px;
     text-align: center;
 
@@ -44,7 +48,7 @@
     font-family: 'Urbanist';
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 48px;
     text-align: center;
 
@@ -58,7 +62,7 @@
     font-family: 'Urbanist';
     font-style: normal;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 48px;
     text-align: center;
 
@@ -81,13 +85,13 @@
 }
 
 #profilo {
-    background-image: url(./photos/personfill0wght400grad0opsz481717-f66o.svg);
+    background-image: url(../images/personfill0wght400grad0opsz481717-f66o.svg);
     width: 50px;
     height: 50px;
     border-color: transparent;
 }
 
 #proposteazienda-button {
-    background: var(--dl-color-default-barwindows) url(./photos/maglietteazienda721-49t-500w.png) no-repeat bottom center;
+    background: var(--dl-color-default-barwindows) url(../images/maglietteazienda721-49t-500w.png) no-repeat bottom center;
     padding-bottom: 16px;
 }
