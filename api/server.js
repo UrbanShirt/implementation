@@ -40,6 +40,10 @@ app.get('/style.css', function(req, res) {
     res.sendFile('/home/isdev/Documents/uni/IS-Progetto/UrbanShirt/sviluppo/implementation/ui/style.css', {});
 })
 
+app.get('/script.js', function(req, res) {
+    res.sendFile('/home/isdev/Documents/uni/IS-Progetto/UrbanShirt/sviluppo/implementation/ui/script.js', {});
+})
+
 app.get('/propostecommunity.html', function(req, res) {
     res.sendFile('/home/isdev/Documents/uni/IS-Progetto/UrbanShirt/sviluppo/implementation/ui/propostecommunity.html', {});
 })
