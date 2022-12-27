@@ -6,16 +6,16 @@ function getShirtOfTheWeek() {
 
     fetch('/getWeeklyShirt').then((resp) => resp.json())
         .then(function (data) {
-            console.log(data);
+            document.getElementById("weeklyShirt").src = data.image;
         });
 
 }
-getShirtOfTheWeek();
+
 
 function getCompanyImage() {
 
 }
-getCompanyImage();
+
 
 function getCommunityImage() {
 

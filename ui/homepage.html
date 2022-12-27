@@ -11,9 +11,11 @@
     <title>Urban Shirt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
+
+    <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="getShirtOfTheWeek()">
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./homepage.css" />
 
@@ -30,6 +32,7 @@
         <button id="btn-azienda" height="50px" weight="45px">
             <h3 class="homepage-text-shirtoftheweek">Maglietta della Settimana</h3>
         </button>
+        <img id="weeklyShirt" src="">
         <button id="btn-azienda" height="50px" weight="45px" onclick="location.href='./propostecommunity.html'">
             <h3 class="homepage-text-community">Le magliette della Community</h3>
         </button>
