@@ -21,7 +21,9 @@
 
 #piedipagina {
     position: fixed;
-    width: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
     height: 70px;
     top: auto;
     bottom: 15px;
@@ -30,8 +32,6 @@
  .color_bar {
     background: linear-gradient(270deg, #4FD7C9 8.23%, #8C16DD 37.97%, #FB913A 66.9%, #D7AD0D 93.17%);
     border-radius: 25px;
-    left: 0px;
-    right: 0px;
  }
 
 .homepage-text-title {
@@ -132,8 +132,8 @@ ul {
 
 li {
     background-color: transparent;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 button{
