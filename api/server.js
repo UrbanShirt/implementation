@@ -13,6 +13,10 @@ app.use(express.json());
 app.use('/', shirtRoutes);
 app.use('/', userRoutes);
 
+// set project root
+process.chdir('../')
+const projectRoot = process.cwd();
+
 
 mongoose.connect(
     process.env.MONGODB_URI,
@@ -29,23 +33,23 @@ const listener = app.listen(process.env.PORT || 3000, () => {
 })
 
 app.get('/', function(req, res) {
-    res.sendFile('/home/isdev/Documents/uni/IS-Progetto/UrbanShirt/sviluppo/implementation/ui/homepage.html', {});
+    res.sendFile(projectRoot + '/ui/homepage.html', {});
 })
 
 app.get('/homepage.css', function(req, res) {
-    res.sendFile('/home/isdev/Documents/uni/IS-Progetto/UrbanShirt/sviluppo/implementation/ui/homepage.css', {});
+    res.sendFile(projectRoot + '/ui/homepage.css', {});
 })
 
 app.get('/style.css', function(req, res) {
-    res.sendFile('/home/isdev/Documents/uni/IS-Progetto/UrbanShirt/sviluppo/implementation/ui/style.css', {});
+    res.sendFile(projectRoot + '/ui/style.css', {});
 })
 
 app.get('/script.js', function(req, res) {
-    res.sendFile('/home/isdev/Documents/uni/IS-Progetto/UrbanShirt/sviluppo/implementation/ui/script.js', {});
+    res.sendFile(projectRoot + '/ui/script.js', {});
 })
 
 app.get('/propostecommunity.html', function(req, res) {
-    res.sendFile('/home/isdev/Documents/uni/IS-Progetto/UrbanShirt/sviluppo/implementation/ui/propostecommunity.html', {});
+    res.sendFile(projectRoot + '/ui/propostecommunity.html', {});
 })
 
 /* INSERT DATI DI ESEMPIO PER COMPANY SHIRT - DA RIMUOVERE
