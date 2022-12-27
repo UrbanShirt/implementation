@@ -27,11 +27,12 @@ mongoose.connect(
     }
 );
 
-
 const listener = app.listen(process.env.PORT || 3000, () => {
     console.log('Your app is listening on port ' + listener.address().port)
 })
 
+
+// define pages
 app.get('/', function(req, res) {
     res.sendFile(projectRoot + '/ui/homepage.html', {});
 })
@@ -50,6 +51,10 @@ app.get('/script.js', function(req, res) {
 
 app.get('/propostecommunity.html', function(req, res) {
     res.sendFile(projectRoot + '/ui/propostecommunity.html', {});
+})
+
+app.get('/proposteazienda.html', function(req, res) {
+    res.sendFile(projectRoot + '/ui/proposteazienda.html', {});
 })
 
 /* INSERT DATI DI ESEMPIO PER COMPANY SHIRT - DA RIMUOVERE
