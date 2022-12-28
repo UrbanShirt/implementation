@@ -1,0 +1,89 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "UrbanShirt API Overview",
+    "version": "v1",
+    "description": "Ecommerce di magliette con comminity"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "CompanyShirt",
+      "description": "API for operating with shirts"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/getCompanyShirts": {
+      "get": {
+        "operationId": "getCompanyShirts",
+        "tags" : [
+          "Shirts"
+        ],
+        "summary": "Get company shirts on our system",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CompanyShirt"
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "examples": {
+              "application/json": "Impossibile to find shirts"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CompanyShirt": {
+      "required": [
+          "name",
+          "creationDate",
+          "image",
+          "color",
+          "material"
+      ],
+      "properties": {
+        "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "creationDate": {
+          "type": "date",
+          "required": true
+        },
+        "image": {
+          "type": "string",
+          "required": true
+        },
+        "color": {
+          "type": "string",
+          "required": true,
+          "default": "white"
+        },
+        "material": {
+          "type": "string",
+          "required": true,
+          "default": "polyester"
+        }
+      }
+    }
+  }
+} 

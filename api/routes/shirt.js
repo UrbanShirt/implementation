@@ -3,7 +3,17 @@ const express = require('express');
 
 const router = express.Router();
 const shirtController = require('../controllers/shirt');
+
+// token checker for logged user activity
 const tokenChecker = require('../tokenChecker.js');
+
+// swager imports
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../swagger.json');
+
+
+router.use('/api-docs', swaggerUi.serve);
+router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 router.get('/getCompanyShirts', shirtController.getCompanyShirts);
 router.get('/getFilteredCompanyShirts/:filterName', shirtController.getFilteredCompanyShirts);
