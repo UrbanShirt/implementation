@@ -29,7 +29,7 @@ const getFilteredCompanyShirts = (req, res) => {
 
 // GET '/getCommunityShirts'
 const getCommunityShirts = (req, res) => {
-    CommunityShirt.find({}, (err, data) => {
+    CommunityShirt.find({isPublic: true}, (err, data) => {
         if (err) {
             return res.status(404).json({error: "Impossible to find shirts"});
         }

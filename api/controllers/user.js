@@ -9,7 +9,7 @@ const getUserData = (req, res) => {
         if (err || !data) {
             return res.status(404).json({error: "Impossible to find User"});
         } else {
-            return res.json(data);
+            return res.status(200).json(data);
         }
     })
 };
@@ -20,11 +20,11 @@ const registerUser = (req, res) => {
     
     User.findOne({ username: req.body.username }, (err, data) => {
         if (err) {
-            return res.json(`Something went wrong, please try again. ${err}`);
+            return res.status(400).json({error: "Registration failed"});
         } else if (data) {
-            return res.json({ message: "User already exists" });
+            return res.status(400).json({error: "User already exists"});
         } else if (!pswRegex.test(req.body.password)) {
-            return res.json({ message: "The password is not 8 characters long, containing a lowercase and an uppercase letter, a number and a special character" });
+            return res.status(400).json({error: "The password is not 8 characters long, containing a lowercase and an uppercase letter, a number and a special character"});
         } else {
             const newUser = new User({
                 username: req.body.username,
@@ -38,9 +38,9 @@ const registerUser = (req, res) => {
 
             newUser.save((err, data) => {
                 if (err) {
-                    return res.json({ Error: err });
+                    return res.status(400).json({error: "Registration failed"});
                 }
-                return res.json(data);
+                return res.status(200).json(data);
             })
         }
     })
@@ -50,14 +50,14 @@ const registerUser = (req, res) => {
 const login = (req, res) => {
     User.findOne({ username: req.body.username }, (err, user) => {
         if (!user || user.password != req.body.password) {
-            res.json({success: false, message: "Bad credentials"});
+            return res.status(400).json({success: false, error: "Bad credentials"});
         }
 
         var payload = {username: user.username, email: user.email, address: user.address, time: Date()};
         var token = jwt.sign(payload, process.env.SUEG_SECRET);
 
-        res.json({success: true, message: 'Logged in successfully',
-            token: token, username: user.usernname, self: user.username});
+        return res.status(200).json({success: true, message: 'Logged in successfully',
+            token: token, username: user.username});
     })
 };
 

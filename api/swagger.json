@@ -9,8 +9,16 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "CompanyShirt",
-      "description": "API for operating with shirts"
+      "name": "Company Shirts",
+      "description": "API documentation for operating with company shirts"
+    },
+    {
+      "name": "Community Shirts",
+      "description": "API documentation for operating with community shirts"
+    },
+    {
+      "name": "Users",
+      "description": "API documentation for user operations"
     }
   ],
   "schemes": [
@@ -26,8 +34,8 @@
     "/getCompanyShirts": {
       "get": {
         "operationId": "getCompanyShirts",
-        "tags" : [
-          "Shirts"
+        "tags": [
+          "Company Shirts"
         ],
         "summary": "Get company shirts on our system",
         "produces": [
@@ -41,9 +49,170 @@
             }
           },
           "404": {
-            "description": "NOT FOUND",
+            "description": "Not Found",
             "examples": {
               "application/json": "Impossibile to find shirts"
+            }
+          }
+        }
+      }
+    },
+    "/getCommunityShirts": {
+      "get": {
+        "operationId": "getCommunityShirts",
+        "tags": [
+          "Community Shirts"
+        ],
+        "summary": "Get public community shirts on our system",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CommunityShirt"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": "Impossibile to find shirts"
+            }
+          }
+        }
+      }
+    },
+    "/getUserData/{username}": {
+      "get": {
+        "operationId": "getUserData",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user data",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "Username of the selected user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": "Impossible to find User"
+            }
+          }
+        }
+      }
+    },
+    "/registerUser": {
+      "post": {
+        "operationId": "registerUser",
+        "tags": [
+          "Users"
+        ],
+        "summary": "User registration",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Data of the new user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "examples": {
+              "application/json": [
+                "Registration failed",
+                "User already exists",
+                "The password is not 8 characters long, containing a lowercase and an uppercase letter, a number and a special character"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "operationId": "login",
+        "tags": [
+          "Users"
+        ],
+        "summary": "User login",
+        "parameters": [
+          {
+            "name": "credentials",
+            "in": "body",
+            "description": "Credentials of the user",
+            "required": true,
+            "schema": { 
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password":{
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message":{
+                  "type": "string"
+                },
+                "token":{
+                  "type": "string"
+                },
+                "username":{
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "examples": {
+              "application/json": "Bad credentials"
             }
           }
         }
@@ -82,6 +251,111 @@
           "type": "string",
           "required": true,
           "default": "polyester"
+        }
+      }
+    },
+    "CommunityShirt": {
+      "required": [
+          "name",
+          "creationDate",
+          "image",
+          "creator",
+          "color",
+          "material",
+          "likes",
+          "voters",
+          "isPublic",
+          "isMostLiked"
+      ],
+      "properties": {
+        "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "creationDate": {
+          "type": "date",
+          "required": true
+        },
+        "image": {
+          "type": "string",
+          "required": true
+        },
+        "creator": {
+          "type": "string",
+          "required": true
+        },
+        "color": {
+          "type": "string",
+          "required": true,
+          "default": "white"
+        },
+        "material": {
+          "type": "string",
+          "required": true,
+          "default": "polyester"
+        },
+        "likes": {
+          "type": "number",
+          "required": true,
+          "default": 0
+        },
+        "voters": {
+          "type": "list",
+          "required": true,
+          "default": []
+        },
+        "isPublic": {
+          "type": "boolean",
+          "required": true,
+          "default": false
+        },
+        "isMostLiked": {
+          "type": "boolean",
+          "required": true,
+          "default": false
+        }
+      }
+    },
+    "User": {
+      "required": [
+          "username",
+          "email",
+          "firstName",
+          "lastName",
+          "address",
+          "birthDate",
+          "password"
+      ],
+      "properties": {
+        "username": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "email": {
+          "type": "string",
+          "required": true
+        },
+        "firstName": {
+          "type": "string",
+          "required": true
+        },
+        "lastName": {
+          "type": "string",
+          "required": true
+        },
+        "address": {
+          "type": "string",
+          "required": true
+        },
+        "birthDate": {
+          "type": "date",
+          "required": true
+        },
+        "password": {
+          "type": "string",
+          "required": true
         }
       }
     }
