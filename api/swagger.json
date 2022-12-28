@@ -57,6 +57,41 @@
         }
       }
     },
+    "/getFilteredCompanyShirts/{filterName}": {
+      "get": {
+        "operationId": "getFilteredCompanyShirts",
+        "tags": [
+          "Company Shirts"
+        ],
+        "summary": "Get filtered company shirts on our system by name",
+        "parameters": [
+          {
+            "name": "filterName",
+            "in": "path",
+            "description": "Searchword used to filter by name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CompanyShirt"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": "Impossibile to find shirts"
+            }
+          }
+        }
+      }
+    },
     "/getCommunityShirts": {
       "get": {
         "operationId": "getCommunityShirts",
@@ -78,6 +113,121 @@
             "description": "Not Found",
             "examples": {
               "application/json": "Impossibile to find shirts"
+            }
+          }
+        }
+      }
+    },
+    "/getFilteredCommunityShirts/{filterName}": {
+      "get": {
+        "operationId": "getFilteredCommunityShirts",
+        "tags": [
+          "Community Shirts"
+        ],
+        "summary": "Get filtered community shirts on our system by name or creator",
+        "parameters": [
+          {
+            "name": "filterName",
+            "in": "path",
+            "description": "Searchword used to filter by name or creator",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CommunityShirt"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": "Impossibile to find shirts"
+            }
+          }
+        }
+      }
+    },
+    "/getWeeklyShirt": {
+      "get": {
+        "operationId": "getWeeklyShirt",
+        "tags": [
+          "Community Shirts"
+        ],
+        "summary": "Get the weekly shirt",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CommunityShirt"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": "Impossible to find Weekly Shirt"
+            }
+          }
+        }
+      }
+    },
+    "/getHomepageCompanyShirt": {
+      "get": {
+        "operationId": "getHomepageCompanyShirt",
+        "tags": [
+          "Company Shirts"
+        ],
+        "summary": "Get the company shirt image for the homepage",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "example": "https://github.com/UrbanShirt/implementation/blob/main/images/shirts/homepage-company-shirt.png?raw=true"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": "Impossible to find homepage company Shirt"
+            }
+          }
+        }
+      }
+    },
+    "/getHomepageCommunityShirt": {
+      "get": {
+        "operationId": "getHomepageCommunityShirt",
+        "tags": [
+          "Community Shirts"
+        ],
+        "summary": "Get the community shirt image for the homepage",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "example": "https://github.com/UrbanShirt/implementation/blob/main/images/shirts/homepage-community-shirt.png?raw=true"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": "Impossible to find homepage community Shirt"
             }
           }
         }
