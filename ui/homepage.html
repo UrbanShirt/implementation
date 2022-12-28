@@ -29,17 +29,26 @@
     <div id="piedipagina" class="color_bar">
         <ul>
             <li>
-                <button onclick="location.href='./proposteazienda.html'">
+                <button onclick="location.href='./proposteazienda.html'" cursor="pointer">
                     <h3 class="homepage-text-azienda">Le nostre proposte</h3>
                 </button>
             </li>
             <li>
-                <button>
+                <!-- APERTURA FORM MAGLIETTA -->
+                <dialog class="modal" id="modal">
+                    <img id="shirt" src="" class="center">
+                    <label id="label_weeklyShirt"></label>
+                    <button type="button" class="close-button" onclick="closeFormWeeklyShirt()"><u>torna
+                            indietro</u></button>
+
+                </dialog>
+                <button id="open-button" onclick="openFormWeeklyShirt()">
                     <h3 class="homepage-text-shirtoftheweek">Maglietta della Settimana</h3>
                 </button>
+
             </li>
             <li>
-                <button onclick="location.href='./propostecommunity.html'">
+                <button onclick="location.href='./propostecommunity.html'" cursor="pointer">
                     <h3 class="homepage-text-community">Le magliette della Community</h3>
                 </button>
             </li>
