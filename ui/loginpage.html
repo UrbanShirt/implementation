@@ -16,26 +16,25 @@
 <body>
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./homepage.css" />
+    <link rel="stylesheet" href="./loginpage.css"/>
 
     <!-- TITOLO -->
-    <h1 class="homepage-text-tytle">Entra anche tu nella nostra community</h1>
+    <h1 id="title" class="main-title">
+        Entra anche tu nella <br>
+        nostra community
+    </h1>
 
     <!-- div BARRA COLORATA-->
-    <div>
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+    <div id="login">
+        <h3 id="already-registered">Sei già registrato?</h3>
+        <input class="form" type="text" placeholder="Enter Username" name="username" required>
+        <input class="form" type="password" placeholder="Enter Password" name="psw" required>
 
         <button type="submit">Login</button>
         <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>
     </div>
-
-
-
 </body>
 
 </html>
