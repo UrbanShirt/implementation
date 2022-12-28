@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const dotenv = require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 
 // GET '/getUserData'
@@ -44,9 +46,25 @@ const registerUser = (req, res) => {
     })
 };
 
+// POST '/login'
+const login = (req, res) => {
+    User.findOne({ username: req.body.username }, (err, user) => {
+        if (!user || user.password != req.body.password) {
+            res.json({success: false, message: "Bad credentials"});
+        }
+
+        var payload = {username: user.username, email: user.email, address: user.address, time: Date()};
+        var token = jwt.sign(payload, process.env.SUEG_SECRET);
+
+        res.json({success: true, message: 'Logged in successfully',
+            token: token, username: user.usernname, self: user.username});
+    })
+};
+
 
 module.exports = {
     getUserData,
-    registerUser
+    registerUser,
+    login
 };
 

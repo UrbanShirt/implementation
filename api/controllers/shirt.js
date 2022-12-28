@@ -78,7 +78,7 @@ const likeCommunityShirt = (req, res) => {
 
 // GET '/getWeeklyShirt'
 const getWeeklyShirt = (req, res) => {
-    CommunityShirt.findOne({isMostLiked: true}, async (err, data) => {
+    CommunityShirt.findOne({isMostLiked: true}, (err, data) => {
         if (err || !data) {
             return res.status(404).json({error: "Impossible to find Weekly Shirt"});
         } else {
