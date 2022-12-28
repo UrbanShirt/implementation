@@ -21,7 +21,7 @@
     <!-- TITOLO -->
     <h1 id="title" class="main-title">
         Entra anche tu nella
-        nostra community
+        nostra Community!
     </h1>
 
     <!-- div BARRA COLORATA-->
@@ -29,7 +29,7 @@
         <h3 id="already-registered">Sei già registrato?</h3>
         <input class="login-form" type="text" placeholder="username" name="username" required>
         <input class="login-form" type="password" placeholder="password" name="psw" required>
-        <!--link password dimenticata-->
+        <a class="linkstyle" href="./retrievepswpage.html">Recupera password</a>
         <button class="log-btn" type="submit">Accedi</button>
         <!--<label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -37,16 +37,56 @@
     </div>
 
     <div id="register">
-        <input class="registration-form" type="text" placeholder="username" name="username" required>
-        <input class="registration-form" type="password" placeholder="password" name="psw" required>
-        <input class="registration-form" type="text" placeholder="username" name="username" required>
-        <input class="registration-form" type="password" placeholder="password" name="psw" required>
-        <!--link password dimenticata-->
-        <button class="log-btn" type="submit">Accedi</button>
-        <!--<label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>-->
+        <div class="reg-line">
+            <input class="registration-form-A" type="text" placeholder="nome" name="name" required>
+            <input class="registration-form-A" type="text" placeholder="cognome" name="surname" required>
+        </div>
+        <div class="reg-line">
+            <input class="registration-form-D" type="date" placeholder="data" name="data" required>
+            <input class="registration-form-E" type="email" placeholder="e-mail" name="email" required>
+        </div>
+        <div class="reg-line">
+            <input class="registration-form-I" type="text" placeholder="indirizo di spedizione" name="address" required>
+        </div>
+        <div class="reg-line">
+            <input class="registration-form-A" type="text" placeholder="username" name="username" required>
+            <input class="registration-form-A" type="password" placeholder="password" name="psw" required>
+        </div>
+        <div class="reg-line">
+            <button class="reg-btn" type="submit">Registrati</button>
+            <input class="registration-form-A" type="password" placeholder="conferma password" name="psw" required>
+        </div>
     </div>
+    <div id="piedipagina" class="color_bar">
+        <ul>
+            <li>
+                <button onclick="location.href='./proposteazienda.html'" cursor="pointer">
+                    <h3 class="homepage-text-azienda">Le nostre proposte</h3>
+                </button>
+            </li>
+            <li>
+                <!-- APERTURA FORM MAGLIETTA -->
+                <dialog class="modal" id="modal">
+                    <img id="shirt" src="" class="center">
+                    <label id="label_weeklyShirt"></label>
+                    <button type="button" class="close-button" onclick="closeFormWeeklyShirt()"><u>torna
+                            indietro</u></button>
+
+                </dialog>
+                <button id="open-button" onclick="openFormWeeklyShirt()">
+                    <h3 class="homepage-text-shirtoftheweek">Maglietta della Settimana</h3>
+                </button>
+
+            </li>
+            <li>
+                <button onclick="location.href='./propostecommunity.html'" cursor="pointer">
+                    <h3 class="homepage-text-community">Le magliette della Community</h3>
+                </button>
+            </li>
+        </ul>
+
+    </div>
+
 </body>
 
 </html>
