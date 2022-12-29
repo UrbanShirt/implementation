@@ -1,11 +1,4 @@
-var user = {}
-
-function login() {
-
-}
-
 function getShirtOfTheWeek() {
-
     fetch('/getWeeklyShirt').then((resp) => resp.json())
         .then(function (data) {
             document.getElementById("weeklyShirt").src = data.image;
@@ -117,13 +110,46 @@ function login() {
         if (suegResp.error) {
             throw new Error(suegResp.error);
         }
-        console.log("giusto");
         document.getElementById("login").reset();
-        user["username"] = suegResp.username;
-        user["token"] = suegResp.token;
+        localStorage.setItem("username", suegResp.username);
+        localStorage.setItem("token", suegResp.token);
         alert(suegResp.message);
     }).catch((error) => {
         alert(error);
         document.getElementById("login").reset();
+    });
+}
+
+function logout() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+    alert("User logged out");
+}
+
+function viewPassword() {
+    var x = document.getElementById("hiddenPassword");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function getUserData() {
+    fetch('/getUserData/' + localStorage.getItem("username")).then(function (res) {
+        return res.json();
+    }).then(function (suegResp) {
+        if (suegResp.error) {
+            throw new Error(suegResp.error);
+        }
+        document.getElementById("username").textContent = suegResp.username;
+        document.getElementById("email").textContent = suegResp.email;
+        document.getElementById("firstName").textContent = suegResp.firstName;
+        document.getElementById("lastName").textContent = suegResp.lastName;
+        document.getElementById("address").textContent = suegResp.address;
+        document.getElementById("birthDate").textContent = suegResp.birthDate;
+        document.getElementById("password").textContent = suegResp.password;
+    }).catch((error) => {
+        alert(error);
     });
 }
