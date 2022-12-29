@@ -26,17 +26,12 @@
         nostra Community!
     </h1>
 
-    <!-- div BARRA COLORATA-->
-    <div id="login">
+    <form id="login">
         <h3 id="already-registered">Sei già registrato?</h3>
         <input class="login-form" type="text" placeholder="username" name="username" required>
-        <input class="login-form" type="password" placeholder="password" name="psw" required>
-        <a class="linkstyle" href="./retrievepswpage.html">Recupera password</a>
-        <button class="log-btn" type="submit">Accedi</button>
-        <!--<label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>-->
-    </div>
+        <input class="login-form" type="password" placeholder="password" name="password" required>
+        <button class="log-btn" type="button" onclick="login()">Accedi</button>
+    </form>
 
     <form id="register">
         <div class="reg-line">

@@ -1,3 +1,5 @@
+var user = {}
+
 function login() {
 
 }
@@ -96,7 +98,32 @@ function registraUtente() {
         alert(error);
         document.getElementById("register").reset();
     });
+}
 
+function login() {
+    var username = document.getElementById("login").username.value;
+    var password = document.getElementById("login").password.value;
 
-
+    fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    }).then(function (res) {
+        return res.json();
+    }).then(function (suegResp) {
+        if (suegResp.error) {
+            throw new Error(suegResp.error);
+        }
+        console.log("giusto");
+        document.getElementById("login").reset();
+        user["username"] = suegResp.username;
+        user["token"] = suegResp.token;
+        alert(suegResp.message);
+    }).catch((error) => {
+        alert(error);
+        document.getElementById("login").reset();
+    });
 }
