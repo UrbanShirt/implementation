@@ -53,3 +53,41 @@ function renderDataInTheTable(data) {
 function getCommunityShirts() {
 
 }
+
+function registraUtente() {
+    //var psw = document.getElementById("register").elements["psw"].value;
+    var psw = document.getElementById("register").psw.value;
+    var confirmPsw = document.getElementById("register").confirmPsw.value;
+
+    if (psw != confirmPsw) {
+        alert("Password e Conferma Password non corrispondono");
+        document.getElementById("register").psw.value = "";
+        document.getElementById("register").confirmPsw.value = "";
+        return;
+    }
+
+    var firstName = document.getElementById("register").firstName.value;
+    var lastName = document.getElementById("register").lastName.value;
+    var birthDate = document.getElementById("register").birthDate.value;
+    var email = document.getElementById("register").email.value;
+    var address = document.getElementById("register").address.value;
+    var username = document.getElementById("register").username.value;
+
+    fetch('/registerUser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            birthDate: birthDate,
+            email: email,
+            address: address,
+            username: username,
+            psw: psw
+        })
+    }).then(function (res) {
+        //console.log(res);
+    }).catch(error => console.log(res));//.then((resp) => resp.json()).then(function(data) { })
+
+
+}

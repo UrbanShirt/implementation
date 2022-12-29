@@ -11,12 +11,14 @@
     <title>Urban Shirt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
+    <script src="script.js"></script>
 </head>
 <div class="logo"> </div>
+
 <body>
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./homepage.css" />
-    <link rel="stylesheet" href="./loginpage.css"/>
+    <link rel="stylesheet" href="./loginpage.css" />
 
     <!-- TITOLO -->
     <h1 id="title" class="main-title">
@@ -36,27 +38,32 @@
         </label>-->
     </div>
 
-    <div id="register">
+    <form id="register">
         <div class="reg-line">
-            <input class="registration-form-A" type="text" placeholder="nome" name="name" required>
-            <input class="registration-form-A" type="text" placeholder="cognome" name="surname" required>
+            <input class="registration-form-A" type="text" placeholder="nome" name="firstName" value="davide" required>
+            <input class="registration-form-A" type="text" placeholder="cognome" name="lastName" value="minatel"
+                required>
         </div>
         <div class="reg-line">
-            <input class="registration-form-D" type="date" placeholder="data" name="data" required>
-            <input class="registration-form-E" type="email" placeholder="e-mail" name="email" required>
+            <input class="registration-form-D" type="date" placeholder="data" name="birthDate" required>
+            <input class="registration-form-E" type="email" placeholder="e-mail" name="email"
+                value="davide.minatel@gmail.com" required>
         </div>
         <div class="reg-line">
-            <input class="registration-form-I" type="text" placeholder="indirizo di spedizione" name="address" required>
+            <input class="registration-form-I" type="text" placeholder="indirizo di spedizione" name="address"
+                value="casaDiTuaMadre" required>
         </div>
         <div class="reg-line">
-            <input class="registration-form-A" type="text" placeholder="username" name="username" required>
+            <input class="registration-form-A" type="text" placeholder="username" name="username" value="davide"
+                required>
             <input class="registration-form-A" type="password" placeholder="password" name="psw" required>
         </div>
         <div class="reg-line">
-            <button class="reg-btn" type="submit">Registrati</button>
-            <input class="registration-form-A" type="password" placeholder="conferma password" name="psw" required>
+            <button class="reg-btn" type="button" onclick="registraUtente()">Registrati</button>
+            <input class="registration-form-A" type="password" placeholder="conferma password" name="confirmPsw"
+                required>
         </div>
-    </div>
+    </form>
     <div id="piedipagina" class="color_bar">
         <ul>
             <li>
