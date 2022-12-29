@@ -33,28 +33,40 @@ const listener = app.listen(process.env.PORT || 3000, () => {
 
 
 // define pages
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.sendFile(projectRoot + '/ui/homepage.html', {});
 })
 
-app.get('/homepage.css', function(req, res) {
+app.get('/homepage.css', function (req, res) {
     res.sendFile(projectRoot + '/ui/homepage.css', {});
 })
 
-app.get('/style.css', function(req, res) {
+app.get('/style.css', function (req, res) {
     res.sendFile(projectRoot + '/ui/style.css', {});
 })
 
-app.get('/script.js', function(req, res) {
+app.get('/script.js', function (req, res) {
     res.sendFile(projectRoot + '/ui/script.js', {});
 })
 
-app.get('/propostecommunity.html', function(req, res) {
+app.get('/propostecommunity.html', function (req, res) {
     res.sendFile(projectRoot + '/ui/propostecommunity.html', {});
 })
 
-app.get('/proposteazienda.html', function(req, res) {
+app.get('/proposteazienda.html', function (req, res) {
     res.sendFile(projectRoot + '/ui/proposteazienda.html', {});
+})
+
+app.get('/loginpage.html', function (req, res) {
+    res.sendFile(projectRoot + '/ui/loginpage.html', {});
+})
+
+app.get('/loginpage.css', function (req, res) {
+    res.sendFile(projectRoot + '/ui/loginpage.css', {});
+})
+
+app.get('/homepage.html', function (req, res) {
+    res.sendFile(projectRoot + '/ui/homepage.html', {});
 })
 
 /* INSERT DATI DI ESEMPIO PER COMPANY SHIRT - DA RIMUOVERE

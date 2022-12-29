@@ -26,11 +26,30 @@ function closeFormWeeklyShirt() {
     modal.close();
 }
 
-function getCompanyImage() {
-
+function getCompanyShirts() {
+    fetch('/getCompanyShirts').then((resp) => resp.json())
+        .then(function (data) {
+            renderDataInTheTable(data);
+        });
 }
 
+function renderDataInTheTable(data) {
+    const trs = document.getElementById("company-table");
+    const arr = Array.from(data);
+    let newRow = document.createElement("tr");
 
-function getCommunityImage() {
+    for (i = 0; i < arr.length; i++) {
+        let cell = document.createElement("td");
+        let imagee = document.createElement("img");
+        cell.innerText = arr[i].name;
+        imagee.setAttribute('src', arr[i].image);
+        imagee.style.border = '5px, solid purple';
+        newRow.appendChild(cell);
+        newRow.appendChild(imagee);
+    }
+    trs.appendChild(newRow);
+}
+
+function getCommunityShirts() {
 
 }
