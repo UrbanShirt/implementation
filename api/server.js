@@ -65,9 +65,6 @@ app.get('/loginpage.css', function (req, res) {
     res.sendFile(projectRoot + '/ui/loginpage.css', {});
 })
 
-app.get('/homepage.html', function (req, res) {
-    res.sendFile(projectRoot + '/ui/homepage.html', {});
-})
 
 /* INSERT DATI DI ESEMPIO PER COMPANY SHIRT - DA RIMUOVERE
 const companyShirtModel = require('./models/company-shirt');
