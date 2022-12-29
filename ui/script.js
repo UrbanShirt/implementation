@@ -55,13 +55,12 @@ function getCommunityShirts() {
 }
 
 function registraUtente() {
-    //var psw = document.getElementById("register").elements["psw"].value;
-    var psw = document.getElementById("register").psw.value;
+    var password = document.getElementById("register").password.value;
     var confirmPsw = document.getElementById("register").confirmPsw.value;
 
-    if (psw != confirmPsw) {
+    if (password != confirmPsw) {
         alert("Password e Conferma Password non corrispondono");
-        document.getElementById("register").psw.value = "";
+        document.getElementById("register").password.value = "";
         document.getElementById("register").confirmPsw.value = "";
         return;
     }
@@ -83,11 +82,21 @@ function registraUtente() {
             email: email,
             address: address,
             username: username,
-            psw: psw
+            password: password
         })
     }).then(function (res) {
-        //console.log(res);
-    }).catch(error => console.log(res));//.then((resp) => resp.json()).then(function(data) { })
+        return res.json();
+    }).then(function (suegResp) {
+        if (suegResp.error) {
+            throw new Error(suegResp.error);
+        }
+        alert("user " + suegResp.username + " correctly registered");
+        document.getElementById("register").reset();
+    }).catch((error) => {
+        alert(error);
+        document.getElementById("register").reset();
+    });
+
 
 
 }
