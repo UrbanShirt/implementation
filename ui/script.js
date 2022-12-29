@@ -52,6 +52,15 @@ function getCompanyShirts() {
         });
 }
 
+function getFilteredCompanyShirts() {
+    var filterName = document.getElementById("search").value;
+    fetch('/getFilteredCompanyShirts/' + filterName).then((resp) => resp.json())
+        .then(function (data) {
+            clearShirtsTable(true);
+            renderDataInTheTable(data);
+        });
+}
+
 function renderDataInTheTable(data) {
     const trs = document.getElementById("company-table");
     const arr = Array.from(data);
@@ -72,6 +81,15 @@ function renderDataInTheTable(data) {
 function getCommunityShirts() {
     fetch('/getCommunityShirts').then((resp) => resp.json())
         .then(function (data) {
+            renderDataInTheTableCommunity(data);
+        });
+}
+
+function getFilteredCommunityShirts() {
+    var filterName = document.getElementById("search").value;
+    fetch('/getFilteredCommunityShirts/' + filterName).then((resp) => resp.json())
+        .then(function (data) {
+            clearShirtsTable(false);
             renderDataInTheTableCommunity(data);
         });
 }
@@ -124,6 +142,22 @@ function likeShirt(shirtName) {
     }).catch((error) => {
         alert(error);
     });
+}
+
+function clearShirtsTable(isCompany) {
+    var shirtTable;
+    if (isCompany) {
+        shirtTable = "company-table";
+    } else {
+        shirtTable = "community-table";
+    }
+
+    console.log(shirtTable);
+
+    var trs = document.getElementById(shirtTable);
+    var rows = document.getElementsByTagName("tr");
+
+    trs.removeChild(rows[0]);
 }
 
 function registraUtente() {
@@ -198,8 +232,7 @@ function login() {
 }
 
 function logout() {
-    localStorage.removeItem("username");
-    localStorage.removeItem("token");
+    localStorage.clear();
     alert("User logged out");
 }
 
