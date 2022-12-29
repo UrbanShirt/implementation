@@ -49,6 +49,32 @@ function getCommunityShirts() {
 
 }
 
+function likeShirt(shirtName) {
+    if (!localStorage.getItem("username") || localStorage.getItem("token")) {
+        alert("Non hai eseguito il login!");
+        return;
+    }
+
+    fetch('/likeCommunityShirt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: shirtName,
+            username: localStorage.getItem("username"),
+            token:  localStorage.getItem("token")
+        })
+    }).then(function (res) {
+        return res.json();
+    }).then(function (suegResp) {
+        if (suegResp.error) {
+            throw new Error(suegResp.error);
+        }
+        alert(suegResp.message);
+    }).catch((error) => {
+        alert(error);
+    });
+}
+
 function registraUtente() {
     var password = document.getElementById("register").password.value;
     var confirmPsw = document.getElementById("register").confirmPsw.value;
