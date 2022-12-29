@@ -63,6 +63,60 @@
     background: transparent;
 }
 
+.homepage-text-title {
+
+    color: var(--dl-color-default-titlecolor);
+    width: auto;
+    height: auto;
+    position: static;
+    font-size: 80px;
+    align-self: auto;
+    text-align: center;
+    font-family: Urbanist;
+    font-weight: 900;
+    line-height: normal;
+    font-stretch: normal;
+    margin-right: 0;
+    margin-bottom: 0;
+    background: transparent;
+}
+
+.proposteazienda-text-title {
+
+    color: var(--dl-color-default-titlecolor);
+    width: auto;
+    height: auto;
+    position: static;
+    font-size: 80px;
+    align-self: auto;
+    text-align: center;
+    font-family: Urbanist;
+    font-weight: 900;
+    line-height: normal;
+    font-stretch: normal;
+    margin-right: 0;
+    margin-bottom: 0;
+    background: transparent;
+}
+
+.community-text-title {
+
+    color: var(--dl-color-default-titlecolor);
+    width: auto;
+    height: auto;
+    position: static;
+    font-size: 80px;
+    align-self: auto;
+    text-align: center;
+    font-family: Urbanist;
+    font-weight: 900;
+    line-height: normal;
+    font-stretch: normal;
+    margin-right: 0;
+    margin-bottom: 0;
+    background: transparent;
+}
+
 .homepage-text-azienda {
     font-family: 'Urbanist';
     font-style: normal;

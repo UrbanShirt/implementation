@@ -11,21 +11,28 @@
     <title>Urban Shirt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
+    <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="getCommunityShirts()">
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./homepage.css" />
 
     <!-- TITOLO -->
-    <h1 class="homepage-text-tytle">Le magliette della community</h1>
+    <h1 class="community-text-title">Le magliette della Community</h1>
 
-    <!-- div BARRA COLORATA-->
-    <div>
-
+    <p>
+        <label for="search">Cerca</label>
+        <input type="text" id="search" name="name">
+    </p>
+    <br>
+    <div id="communityshirts-container">
+        <table id="community-table"></table>
     </div>
-
-
+    <br><br><br>
+    <button onclick="location.href='./'" cursor="pointer">
+        <h5><u>torna indietro</u></h3>
+    </button>
 
 </body>
 

@@ -1,10 +1,34 @@
+function getHomePageShirts() {
+    getHomePageCompanyShirt();
+    getShirtOfTheWeek();
+    getHomePageCommunityShirt();
+}
+
 function getShirtOfTheWeek() {
     fetch('/getWeeklyShirt').then((resp) => resp.json())
         .then(function (data) {
             document.getElementById("weeklyShirt").src = data.image;
-            document.getElementById("label_weeklyShirt").textContent = data.name;
+            document.getElementById("label_weeklyShirt_name").textContent = "name: " + data.name;
+            document.getElementById("label_weeklyShirt_creationDate").textContent = "creationDate: " + data.creationDate;
+            document.getElementById("label_weeklyShirt_creator").textContent = "creator: " + data.creator;
+            document.getElementById("label_weeklyShirt_color").textContent = "color: " + data.color;
+            document.getElementById("label_weeklyShirt_material").textContent = "material: " + data.material;
+            document.getElementById("label_weeklyShirt_likes").textContent = "likes: " + data.likes;
         });
+}
 
+function getHomePageCompanyShirt() {
+    fetch('/getHomepageCompanyShirt').then((resp) => resp.json())
+        .then(function (data) {
+            document.getElementById("companyShirt").src = data;
+        });
+}
+
+function getHomePageCommunityShirt() {
+    fetch('/getHomepageCommunityShirt').then((resp) => resp.json())
+        .then(function (data) {
+            document.getElementById("communityShirt").src = data;
+        });
 }
 
 function openFormWeeklyShirt() {
@@ -46,11 +70,38 @@ function renderDataInTheTable(data) {
 }
 
 function getCommunityShirts() {
+    fetch('/getCommunityShirts').then((resp) => resp.json())
+        .then(function (data) {
+            renderDataInTheTableCommunity(data);
+        });
+}
 
+function renderDataInTheTableCommunity(data) {
+    const trs = document.getElementById("community-table");
+    const arr = Array.from(data);
+    let newRow = document.createElement("tr");
+
+    for (i = 0; i < arr.length; i++) {
+        let cell = document.createElement("td");
+        let imagee = document.createElement("img");
+        let btnLike = document.createElement("button");
+        btnLike.setAttribute("id", "btn_" + arr[i].name);
+        btnLike.innerText = "like";
+        btnLike.setAttribute("onclick", "likeShirt(\"" + arr[i].name + "\")");
+        cell.innerText = arr[i].name + "\n" + arr[i].creationDate + "\n"
+            + arr[i].creator + "\n" + arr[i].color + "\n" + arr[i].material
+            + "\n" + arr[i].likes;
+        imagee.setAttribute('src', arr[i].image);
+        imagee.style.border = '5px, solid purple';
+        newRow.appendChild(cell);
+        newRow.appendChild(btnLike);
+        newRow.appendChild(imagee);
+    }
+    trs.appendChild(newRow);
 }
 
 function likeShirt(shirtName) {
-    if (!localStorage.getItem("username") || localStorage.getItem("token")) {
+    if (!localStorage.getItem("username") || !localStorage.getItem("token")) {
         alert("Non hai eseguito il login!");
         return;
     }
@@ -61,7 +112,7 @@ function likeShirt(shirtName) {
         body: JSON.stringify({
             name: shirtName,
             username: localStorage.getItem("username"),
-            token:  localStorage.getItem("token")
+            token: localStorage.getItem("token")
         })
     }).then(function (res) {
         return res.json();

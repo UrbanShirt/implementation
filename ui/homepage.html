@@ -15,7 +15,8 @@
     <script src="script.js"></script>
 </head>
 <div id="logo"> </div>
-<body onload="getShirtOfTheWeek()">
+
+<body onload="getHomePageShirts()">
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./homepage.css" />
 
@@ -32,7 +33,18 @@
     </div>
 
     <!-- div NOSTRE PROPOSTE, SHIRTOFTHEWEEK, MAGLIETTE COMMUNITY-->
-    <img id="weeklyShirt" src="" class="center">
+    <ul>
+        <li>
+            <img id="companyShirt" src="" class="center">
+        </li>
+        <li>
+            <img id="weeklyShirt" src="" class="center">
+        </li>
+        <li>
+            <img id="communityShirt" src="" class="center">
+        </li>
+    </ul>
+
     <div id="piedipagina" class="color_bar">
         <ul>
             <li>
@@ -43,8 +55,13 @@
             <li>
                 <!-- APERTURA FORM MAGLIETTA -->
                 <dialog class="modal" id="modal">
-                    <img id="shirt" src="" class="center">
-                    <label id="label_weeklyShirt"></label>
+                    <img id="shirt" src="" class="center"><br>
+                    <label id="label_weeklyShirt_name"></label><br>
+                    <label id="label_weeklyShirt_creationDate"></label><br>
+                    <label id="label_weeklyShirt_creator"></label><br>
+                    <label id="label_weeklyShirt_color"></label><br>
+                    <label id="label_weeklyShirt_material"></label><br>
+                    <label id="label_weeklyShirt_likes"></label><br>
                     <button type="button" class="close-button" onclick="closeFormWeeklyShirt()"><u>torna
                             indietro</u></button>
 
