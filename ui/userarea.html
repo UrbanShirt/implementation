@@ -14,22 +14,43 @@
     <script src="script.js"></script>
 </head>
 
-<body onload="getCommunityShirts()">
+<body onload="getUserData()">
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./homepage.css" />
 
     <!-- TITOLO -->
-    <h1 class="community-text-title">Le magliette della Community</h1>
+    <h1 class="proposteazienda-text-title">Area Utente</h1>
 
-    <p>
-        <label for="search">Cerca</label>
-        <input type="text" id="search" name="name">
-        <button for="search" onclick="getFilteredCommunityShirts()" style="cursor:pointer;font-size:20px">cerca</button>
-    </p>
-    <br>
-    <div id="communityshirts-container">
-        <table id="community-table"></table>
-    </div>
+    <p>username: </p>
+    <p id="username"></p>
+    <br><br>
+    <p>email: </p>
+    <p id="email"></p>
+    <br><br>
+    <p>firstName: </p>
+    <p id="firstName"></p>
+    <br><br>
+    <p>lastName: </p>
+    <p id="lastName"></p>
+    <br><br>
+    <p>Indirizzo: </p>
+    <p id="address"></p>
+    <br><br>
+    <p>Data di nascita: </p>
+    <p id="birthDate"></p>
+    <br><br>
+    <ul>
+        <li>
+            <button onclick="viewPassword()" style="cursor:pointer;font-size:20px;">Visualizza password</button>
+            <div id="hiddenPassword" style="display:none;">
+                <p id="password"></p>
+            </div>
+        </li>
+        <li>
+            <button onclick="logout()" style="cursor:pointer;font-size:20px;">Logout</button>
+        </li>
+    </ul>
+
     <br><br><br>
     <button onclick="location.href='./'" cursor="pointer">
         <h5><u>torna indietro</u></h3>

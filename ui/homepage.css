@@ -2,7 +2,26 @@
     background-color: rgba(235, 221, 244, 1);
 }
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+#logo {
+    background: url(https://github.com/UrbanShirt/implementation/blob/develop/images/logo.png?raw=false);
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 308px;
+    height: 281px;
+    left: 0px;
+    top: 0px;
+
+}
+
 #orizzontale {
+    display: block;
     background-color: transparent;
     top: 350px;
     position: absolute;
@@ -11,8 +30,76 @@
     align-items: center;
 }
 
+#piedipagina {
+    position: fixed;
+    width: 80%;
+    height: 70px;
+    top: auto;
+    bottom: 15px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
 
-.homepage-text-tytle {
+.color_bar {
+    background: linear-gradient(270deg, #4FD7C9 8.23%, #8C16DD 37.97%, #FB913A 66.9%, #D7AD0D 93.17%);
+    border-radius: 25px;
+}
+
+.homepage-text-title {
+
+    color: var(--dl-color-default-titlecolor);
+    width: auto;
+    height: auto;
+    position: static;
+    font-size: 80px;
+    align-self: auto;
+    text-align: center;
+    font-family: Urbanist;
+    font-weight: 900;
+    line-height: normal;
+    font-stretch: normal;
+    margin-right: 0;
+    margin-bottom: 0;
+    background: transparent;
+}
+
+.homepage-text-title {
+
+    color: var(--dl-color-default-titlecolor);
+    width: auto;
+    height: auto;
+    position: static;
+    font-size: 80px;
+    align-self: auto;
+    text-align: center;
+    font-family: Urbanist;
+    font-weight: 900;
+    line-height: normal;
+    font-stretch: normal;
+    margin-right: 0;
+    margin-bottom: 0;
+    background: transparent;
+}
+
+.proposteazienda-text-title {
+
+    color: var(--dl-color-default-titlecolor);
+    width: auto;
+    height: auto;
+    position: static;
+    font-size: 80px;
+    align-self: auto;
+    text-align: center;
+    font-family: Urbanist;
+    font-weight: 900;
+    line-height: normal;
+    font-stretch: normal;
+    margin-right: 0;
+    margin-bottom: 0;
+    background: transparent;
+}
+
+.community-text-title {
 
     color: var(--dl-color-default-titlecolor);
     width: auto;
@@ -34,11 +121,11 @@
     font-family: 'Urbanist';
     font-style: normal;
     font-weight: 900;
-    font-size: 35px;
-    line-height: 48px;
+    font-size: 25px;
     text-align: center;
 
-    background: linear-gradient(269.59deg, #D55E79 15.08%, #D7AD0E 94.48%);
+    /*background: linear-gradient(269.59deg, #D55E79 15.08%, #D7AD0E 94.48%);*/
+    background: #f8f6fa;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -48,11 +135,11 @@
     font-family: 'Urbanist';
     font-style: normal;
     font-weight: 900;
-    font-size: 35px;
-    line-height: 48px;
+    font-size: 25px;
     text-align: center;
 
-    background: linear-gradient(270deg, #51CFCA 18.79%, #803ED9 100%);
+    /*background: linear-gradient(270deg, #51CFCA 18.79%, #803ED9 100%);*/
+    background: #f8f6fa;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -62,11 +149,11 @@
     font-family: 'Urbanist';
     font-style: normal;
     font-weight: 900;
-    font-size: 35px;
-    line-height: 48px;
+    font-size: 25px;
     text-align: center;
 
-    background: linear-gradient(270.33deg, #8E11DD 0.47%, #E9775B 99.9%);
+    /*background: linear-gradient(270.33deg, #8E11DD 0.47%, #E9775B 99.9%);*/
+    background: #f8f6fa;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -80,12 +167,15 @@
 .homepage-div-profilo {
     display: flex;
     justify-content: flex-end;
-    margin-right: 50px;
+    margin-right: 5%;
+    margin-left: 5%;
     margin-top: 5%;
 }
 
 #profilo {
-    background-image: url(https://github.com/UrbanShirt/implementation/blob/main/images/profilo-icon.jpg?raw=true);
+    background-image: url(https://github.com/UrbanShirt/implementation/blob/develop/images/profile-icon.png?raw=false);
+    background-repeat: no-repeat;
+    background-size: contain;
     width: 50px;
     height: 50px;
     border-color: transparent;
@@ -95,4 +185,26 @@
 #proposteazienda-button {
     background: var(--dl-color-default-barwindows) url(../images/maglietteazienda721-49t-500w.png) no-repeat bottom center;
     padding-bottom: 16px;
+}
+
+ul {
+    background-color: transparent;
+    display: flex;
+    list-style: none;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+li {
+    background-color: transparent;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+button {
+    background-color: transparent;
+    width: auto;
+    height: fit-content;
+    border: none;
+    vertical-align: middle;
 }
