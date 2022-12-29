@@ -233,6 +233,80 @@
         }
       }
     },
+    "/likeCommunityShirt": {
+      "post": {
+        "operationId": "likeCommunityShirt",
+        "tags": [
+          "Community Shirts"
+        ],
+        "summary": "Like a shirt of the community",
+        "parameters": [
+          {
+            "name": "shirtUserLiked",
+            "in": "body",
+            "description": "Name of the shirt and username of who liked it",
+            "required": true,
+            "schema": { 
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "username":{
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message":{
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "examples": {
+              "application/json": [
+                "Impossible to like shirt: an error occurred",
+                "You already liked this shirt"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "examples": {
+              "application/json": "No token provided"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "examples": {
+              "application/json": "Bad token"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": "Impossible to find Shirt"
+            }
+          }
+        }
+      }
+    },
     "/getUserData/{username}": {
       "get": {
         "operationId": "getUserData",

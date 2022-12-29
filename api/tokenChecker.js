@@ -6,7 +6,7 @@ const tokenChecker = function(req, res, next) {
 	if (!token) {
 		return res.status(401).send({ 
 			success: false,
-			message: 'No token provided.'
+			message: 'No token provided'
 		});
 	}
 
@@ -14,7 +14,7 @@ const tokenChecker = function(req, res, next) {
 		if (err) {
 			return res.status(403).send({
 				success: false,
-				message: 'Bad token.'
+				message: 'Bad token'
 			});		
 		} else {
 			req.loggedUser = decoded;
