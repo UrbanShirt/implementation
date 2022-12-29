@@ -2,6 +2,17 @@ function getHomePageShirts() {
     getHomePageCompanyShirt();
     getShirtOfTheWeek();
     getHomePageCommunityShirt();
+    isUserLogged();
+}
+
+function isUserLogged() {
+    if (localStorage.getItem("username")) {
+        document.getElementById("pr").style.display = "none";
+        document.getElementById("ua").style.display = "flex";
+    } else {
+        document.getElementById("pr").style.display = "flex";
+        document.getElementById("ua").style.display = "none";
+    }
 }
 
 function getShirtOfTheWeek() {
@@ -233,7 +244,6 @@ function login() {
 
 function logout() {
     localStorage.clear();
-    alert("User logged out");
 }
 
 function viewPassword() {
