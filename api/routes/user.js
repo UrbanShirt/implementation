@@ -3,7 +3,6 @@ const express = require('express');
 
 const router = express.Router();
 const userController = require('../controllers/user');
-const tokenChecker = require('../tokenChecker');
 
 // swager imports
 const swaggerUi = require('swagger-ui-express');

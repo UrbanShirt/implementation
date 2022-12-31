@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 // GET '/getUserData'
 const getUserData = (req, res) => {
     User.findOne({username: req.params.username}, async (err, data) => {
-        if (err || !data) {
+        if (err || !data || data.length == 0) {
             return res.status(404).json({error: "Impossible to find User"});
         } else {
             return res.status(200).json(data);
