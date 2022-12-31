@@ -20,16 +20,13 @@ const projectRoot = process.cwd();
 
 mongoose.connect(
     process.env.MONGODB_URI,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    (err) => {
-        if (err) return console.log("Error: ", err);
-        console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
-    }
-);
-
-const listener = app.listen(process.env.PORT || 3000, () => {
-    console.log('Your app is listening on port ' + listener.address().port)
-})
+    { useNewUrlParser: true, useUnifiedTopology: true }
+).then(() => {
+    console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
+    app.listen(process.env.PORT, () => {
+        console.log('Your app is listening on port ' + process.env.PORT)
+    });
+});
 
 
 // define pages
@@ -69,7 +66,8 @@ app.get('/userarea.html', function (req, res) {
     res.sendFile(projectRoot + '/ui/userarea.html', {});
 })
 
-/* INSERT DATI DI ESEMPIO PER COMPANY SHIRT - DA RIMUOVERE
+module.exports = app;
+/* // INSERT DATI DI ESEMPIO PER COMPANY SHIRT - DA RIMUOVERE
 const companyShirtModel = require('./models/company-shirt');
 
 companyShirtModel.insertMany(
@@ -84,9 +82,9 @@ companyShirtModel.insertMany(
     function (err) {
         console.log("array of shirts added");
     });
-*/
 
-/* INSERT DATI DI ESEMPIO PER COMMUNITY SHIRT - DA RIMUOVERE
+
+// INSERT DATI DI ESEMPIO PER COMMUNITY SHIRT - DA RIMUOVERE
 const communityShirtModel = require('./models/community-shirt');
 
 communityShirtModel.insertMany(
@@ -95,12 +93,12 @@ communityShirtModel.insertMany(
         {name: 'maglietta bianca RODOLFO', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/main/images/shirts/white-blank-shirt-community.png?raw=true', creator: 'Rodolfo', color: 'white', material: 'polyester', isPublic: true},
         {name: 'maglietta blu RODOLFO', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/main/images/shirts/blue-blank-shirt-community.png?raw=true', creator: 'Rodolfo', color: 'blue', material: 'polyester', isPublic: true},
         {name: 'maglietta rossa RODOLFO', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/main/images/shirts/red-blank-shirt-community.png?raw=true', creator: 'Rodolfo', color: 'red', material: 'polyester'},
-        {name: 'maglietta swag quadrato rosso', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/main/images/shirts/sample-weekly-shirt.png?raw=true', creator: 'Anselmo', color: 'white', material: 'cotton', likes: 2, isPublic: true, isMostLiked: true}
+        {name: 'maglietta swag quadrato rosso', creationDate: new Date(), image: 'https://github.com/UrbanShirt/implementation/blob/main/images/shirts/sample-weekly-shirt.png?raw=true', creator: 'Anselmo', color: 'white', material: 'cotton', likes: 2, voters: ['rodolfo', 'anselmo'], isPublic: true, isMostLiked: true}
     ],
     function (err) {
         console.log("array of shirts added");
     });
-*/
+
 
 /*
 const communityShirtModel = require('./models/community-shirt');
