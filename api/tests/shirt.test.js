@@ -312,8 +312,8 @@ describe('GET /getWeeklyShirt', () => {
 });
 
 
-describe('GET /likeCommunityShirt', () => {
-    test('GET /likeCommunityShirt should respond with a message saying that the like was added', async () => {
+describe('POST /likeCommunityShirt', () => {
+    test('POST /likeCommunityShirt should respond with a message saying that the like was added', async () => {
         var payload = {username: 'rodolfo', email: 'a@b.c', address: 'Via del capitano, 2', time: Date()};
         var token = jwt.sign(payload, process.env.SUEG_SECRET);
 
@@ -337,7 +337,7 @@ describe('GET /likeCommunityShirt', () => {
         });
     });
 
-    test('GET /likeCommunityShirt liking a non exisisting shirt should respond with 404 Impossible to find shirt to like', async () => {
+    test('POST /likeCommunityShirt liking a non exisisting shirt should respond with 404 Impossible to find shirt to like', async () => {
         var payload = {username: 'rodolfo', email: 'a@b.c', address: 'Via del capitano, 2', time: Date()};
         var token = jwt.sign(payload, process.env.SUEG_SECRET);
 
@@ -361,7 +361,7 @@ describe('GET /likeCommunityShirt', () => {
         });
     });
 
-    test('GET /likeCommunityShirt liking and already liked shirt should respond with 400 You already liked this shirt', async () => {
+    test('POST /likeCommunityShirt liking and already liked shirt should respond with 400 You already liked this shirt', async () => {
         var payload = {username: 'rodolfo', email: 'a@b.c', address: 'Via del capitano, 2', time: Date()};
         var token = jwt.sign(payload, process.env.SUEG_SECRET);
 

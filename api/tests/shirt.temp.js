@@ -1,1 +1,0 @@
-const shirtController = require('../controllers/shirt');
