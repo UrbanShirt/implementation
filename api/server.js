@@ -23,9 +23,11 @@ mongoose.connect(
     { useNewUrlParser: true, useUnifiedTopology: true }
 ).then(() => {
     console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
-    app.listen(process.env.PORT, () => {
-        console.log('Your app is listening on port ' + process.env.PORT)
-    });
+    if (process.env.NODE_ENV !== 'test') {
+        app.listen(process.env.PORT, () => {
+            console.log('Your app is listening on port ' + process.env.PORT)
+        });
+    }
 });
 
 
